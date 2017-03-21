@@ -1,6 +1,5 @@
 import events = require('events');
 import { Logger, LoggerFactory } from '../common';
-import { OpenstackAPIModel } from '../services';
 
 export class APIEvents {
   public eventEmitter: events.EventEmitter;

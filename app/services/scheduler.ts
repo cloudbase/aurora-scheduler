@@ -2,7 +2,7 @@ import { EventEmitter, RabbitClient, InvalidJsonError, InternalError, Logger, Lo
 import { JobModel } from '../models';
 import { Topology, SQLConfig } from '../config';
 import scheduler = require('node-schedule');
-import cronParser = require('cron-parser');
+const cronParser: any = require('cron-parser');
 
 export class Scheduler {
   public jobs: {};
@@ -43,7 +43,7 @@ export class Scheduler {
   }
 
   static manageRabbitMessage(message) {
-    this.scheduleJob(message.body);
+    this['scheduleJob'](message.body);
   }
 
   /**
@@ -56,9 +56,9 @@ export class Scheduler {
    * @memberOf Scheduler
    */
   static runJob(jobId: number) {
-    this.job.dbObject.findOne({ where: {id: jobId}})
+    this['job'].dbObject.findOne({ where: {id: jobId}})
       .then(job => {
-        this.rabbitClient.publish(job.messageName, '', job.messageBody);
+        this['rabbitClient'].publish(job.messageName, '', job.messageBody);
       });
   }
 

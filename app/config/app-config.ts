@@ -105,8 +105,6 @@ export class AppConfig {
       rabbitHost: this.rabbitHost,
       redisPort: this.redisPort,
       redisHost: this.redisHost,
-      gatewayHost: this.gatewayHost,
-      gatewayPort: this.gatewayPort
     };
   }
 }

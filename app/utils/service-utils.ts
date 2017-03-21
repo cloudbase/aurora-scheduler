@@ -24,7 +24,7 @@ export class ServiceUtils {
       }, serviceOptions
     )
       .then(result => {
-        ServiceUtils.LOGGER.info(`Successfully registered new service - ${result.body}`);
+        ServiceUtils.LOGGER.info(`Successfully registered new service - ${result['body']}`);
       })
       .catch(error => {
         ServiceUtils.LOGGER.error(`Unable to register service - ${JSON.stringify(error)}`);        
@@ -34,7 +34,7 @@ export class ServiceUtils {
   static sendRequest(requestOptions: {}, requestBody?: any) {
     if (requestBody) {
       requestBody = JSON.stringify(requestBody);
-      requestOptions.headers['Content-Length'] = Buffer.byteLength(requestBody);
+      requestOptions['headers']['Content-Length'] = Buffer.byteLength(requestBody);
     }
     
     ServiceUtils.LOGGER.debug(`Sending new request with ${JSON.stringify(requestOptions)}`);
